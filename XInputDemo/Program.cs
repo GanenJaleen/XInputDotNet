@@ -2,11 +2,19 @@
 using System.Threading;
 using XInputDotNetPure;
 
+using System;
+using System.Net;
+using System.Net.Sockets;
+
 namespace XInputDemo
 {
+    string[] args;
+    string self;
+    
     class Program
     {
-        static void Main(string[] args)
+        
+        static void Main()
         {
             while (true)
             {
@@ -20,6 +28,8 @@ namespace XInputDemo
                 Console.WriteLine("\tSticks Left {0} {1} Right {2} {3}", state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
                 GamePad.SetVibration(PlayerIndex.One, state.Triggers.Left, state.Triggers.Right);
                 Thread.Sleep(16);
+                Console.WriteLine("pwn", state.IsConnected, state.PacketNumber);
+                self = GetLocalIPAddress();
             }
         }
     }

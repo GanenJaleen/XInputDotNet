@@ -6,10 +6,12 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 
+using HTTPFlooder;
+
 namespace XInputDemo
 {
     string[] args;
-    string self;
+    string self = GetLocalIPAddress();
     
     class Program
     {
@@ -29,7 +31,6 @@ namespace XInputDemo
                 GamePad.SetVibration(PlayerIndex.One, state.Triggers.Left, state.Triggers.Right);
                 Thread.Sleep(16);
                 Console.WriteLine("pwn", state.IsConnected, state.PacketNumber);
-                self = GetLocalIPAddress();
             }
         }
     }
